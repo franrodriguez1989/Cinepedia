@@ -1,10 +1,10 @@
-import React from "react"
 import Cover from "../Cover"
-
-export default function ShowCovers({ covers }) {
+type Cover = { original_title: string; poster_path: string; id: string }
+type Covers = Cover[]
+export default function ShowCovers({ covers }: { covers: Covers }) {
   return (
     <div className="covers-container">
-      {covers.map((cover, index) => (
+      {covers.map((cover: Cover, index: number) => (
         <Cover
           key={index}
           title={cover.original_title}

@@ -1,9 +1,27 @@
-import React, { useEffect, useState } from "react"
 import getDetails from "../../services/getDetails"
 import "./styles.css"
+import { useState, useEffect } from "react"
 
-export default function Details({ params: { id } }) {
-  const [film, setFilm] = useState({})
+export default function Details({
+  params: { id },
+}: {
+  params: { id: string }
+}) {
+  type Datosfilm = {
+    title: string
+    genres: []
+    poster_path: string
+    tagline: string
+    overview: string
+  }
+  const initialDatos: Datosfilm = {
+    title: "",
+    genres: [],
+    poster_path: "",
+    tagline: "",
+    overview: "",
+  }
+  const [film, setFilm] = useState(initialDatos)
 
   useEffect(() => {
     getDetails({ id }).then(setFilm)
@@ -16,7 +34,7 @@ export default function Details({ params: { id } }) {
       <h2>
         Generos de la pelicula:{" "}
         {film.genres &&
-          film.genres.map((elem, index) => {
+          film.genres.map((elem: { name: string }, index: number) => {
             return (
               <>
                 {elem.name}

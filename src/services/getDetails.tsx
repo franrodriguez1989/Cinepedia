@@ -1,6 +1,6 @@
 import { options } from "./setting"
 
-export default function getDetails({ id }) {
+export default function getDetails({ id }: { id: string }) {
   const film = fetch(
     `https://api.themoviedb.org/3/movie/${id}?language=es`,
     options
