@@ -20,5 +20,6 @@ export default function useFilmDetails({ id }: { id: string }) {
       setLoading(false)
     })
   }, [id])
+  console.log(filmDetails)
   return { filmDetails, loading }
 }

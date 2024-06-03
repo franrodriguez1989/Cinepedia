@@ -15,7 +15,7 @@ export default function Details({
       <h2>
         Generos de la pelicula:{" "}
         {filmDetails.genres &&
-          filmDetails.genres.map((elem: { name: string }, index: number) => {
+          filmDetails.genres.map((elem, index: number) => {
             return (
               <span key={index}>
                 {elem.name}

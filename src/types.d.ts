@@ -8,9 +8,13 @@ export type Covertype = {
   poster_path: string
   id: string
 }
+type Genre = {
+  id: number
+  name: string
+}
 export type Datosfilm = {
   title: string
-  genres: string[]
+  genres: Genre[]
   poster_path: string
   tagline: string
   overview: string
