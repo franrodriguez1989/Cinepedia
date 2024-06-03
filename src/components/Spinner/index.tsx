@@ -1,5 +1,7 @@
 import "./styles.css"
 
-export default function Spinner() {
-  return <span className="spinner"></span>
+const Spinner: React.FC = () => {
+  return <div className="spinner"></div>
 }
+
+export default Spinner

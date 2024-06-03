@@ -1,14 +1,15 @@
 import Cover from "../Cover"
-type Cover = { original_title: string; poster_path: string; id: string }
-type Covers = Cover[]
+import { type Covertype } from "../../types"
+
+type Covers = Covertype[]
 export default function ShowCovers({ covers }: { covers: Covers }) {
   return (
     <div className="covers-container">
-      {covers.map((cover: Cover, index: number) => (
+      {covers.map((cover: Covertype, index: number) => (
         <Cover
           key={index}
-          title={cover.original_title}
-          url={cover.poster_path}
+          original_title={cover.original_title}
+          poster_path={cover.poster_path}
           id={cover.id}
         />
       ))}

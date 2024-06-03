@@ -5,10 +5,12 @@ type ButtonProps = {
   children: React.ReactNode
 }
 
-export default function Button({ children }: ButtonProps) {
+const Button: React.FC<ButtonProps> = ({ children }) => {
   return (
     <div className="button-container">
       <button className="material-button">{children}</button>
     </div>
   )
 }
+
+export default Button

@@ -8,6 +8,7 @@ export default function getDetails({ id }: { id: string }) {
     .then((response) => response.json())
     .then((res) => {
       const { homepage, title, poster_path, overview, genres, tagline } = res
+
       return { homepage, title, poster_path, overview, genres, tagline }
     })
 

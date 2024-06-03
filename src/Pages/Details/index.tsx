@@ -1,57 +1,42 @@
-import getDetails from "../../services/getDetails"
+import useFilmDetails from "../../Hook/useFilmDetails"
+import Spinner from "../../components/Spinner"
 import "./styles.css"
-import { useState, useEffect } from "react"
 
 export default function Details({
   params: { id },
 }: {
   params: { id: string }
 }) {
-  type Datosfilm = {
-    title: string
-    genres: []
-    poster_path: string
-    tagline: string
-    overview: string
-  }
-  const initialDatos: Datosfilm = {
-    title: "",
-    genres: [],
-    poster_path: "",
-    tagline: "",
-    overview: "",
-  }
-  const [film, setFilm] = useState(initialDatos)
-
-  useEffect(() => {
-    getDetails({ id }).then(setFilm)
-  }, [id])
-  console.log(film)
+  const { filmDetails, loading } = useFilmDetails({ id })
 
   return (
     <div className="details">
-      <h1 className="details-h1">Detalles de Pelicula: {film.title}</h1>
+      <h1 className="details-h1">Detalles de Pelicula: {filmDetails.title}</h1>
       <h2>
         Generos de la pelicula:{" "}
-        {film.genres &&
-          film.genres.map((elem: { name: string }, index: number) => {
+        {filmDetails.genres &&
+          filmDetails.genres.map((elem: { name: string }, index: number) => {
             return (
-              <>
+              <span key={index}>
                 {elem.name}
-                {film.genres.length - 1 === index ? "." : ", "}
-              </>
+                {filmDetails.genres.length - 1 === index ? "." : ", "}
+              </span>
             )
           })}
       </h2>
-      <img
-        className="img-details"
-        src={`https://image.tmdb.org/t/p/original${film.poster_path}`}
-        alt={film.title}
-      />
-      <p>{film.tagline}</p>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <img
+          className="img-details"
+          src={`https://image.tmdb.org/t/p/original${filmDetails.poster_path}`}
+          alt={filmDetails.title}
+        />
+      )}
+      <p>{filmDetails.tagline}</p>
       <p>
         Descripción: <br />
-        {film.overview}
+        {filmDetails.overview}
       </p>
     </div>
   )
