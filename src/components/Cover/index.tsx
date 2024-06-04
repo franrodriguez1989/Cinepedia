@@ -1,7 +1,7 @@
-import "./style.css"
-import { type Covertype } from "../../types"
+import "./styles.css"
+import { type Covers } from "../../types"
 
-export default function Cover({ original_title, poster_path, id }: Covertype) {
+export default function Cover({ original_title, poster_path, id }: Covers) {
   return (
     <a href={`/Details/${id}`} className="Cover">
       <img

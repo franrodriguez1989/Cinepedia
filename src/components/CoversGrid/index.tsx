@@ -1,11 +1,11 @@
 import Cover from "../Cover"
-import { type Covertype } from "../../types"
+import { type Covers } from "../../types"
+import "./styles.css"
 
-type Covers = Covertype[]
-export default function ShowCovers({ covers }: { covers: Covers }) {
+export default function CoversGrid({ covers }: { covers: Covers[] }) {
   return (
     <div className="covers-container">
-      {covers.map((cover: Covertype, index: number) => (
+      {covers.map((cover, index: number) => (
         <Cover
           key={index}
           original_title={cover.original_title}

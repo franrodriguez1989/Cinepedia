@@ -1,0 +1,9 @@
+.logo {
+  width: 300px;
+  transition: filter 300ms;
+  height: auto;
+  cursor: pointer;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}

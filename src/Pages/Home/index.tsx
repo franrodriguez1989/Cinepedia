@@ -1,20 +1,20 @@
 import useFilms from "../../Hook/useFilms"
 import Spinner from "../../components/Spinner"
-import ShowCovers from "../../components/ShowCovers"
+import CoversGrid from "../../components/CoversGrid"
 import "./styles.css"
-import { type KeyCategoria } from "../../types"
+import { type KeyCategory } from "../../types"
 
 export default function Home({
-  params: { page },
+  params: { page = "populares" },
 }: {
-  params: { page: KeyCategoria }
+  params: { page: KeyCategory }
 }) {
   const { loading, films } = useFilms({ page })
 
   return (
     <>
       <h1>Películas {page}</h1>
-      {loading ? <Spinner /> : <ShowCovers covers={films} />}
+      {loading ? <Spinner /> : <CoversGrid covers={films} />}
     </>
   )
 }

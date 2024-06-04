@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 
 import getFilms from "../services/getFilms"
-import { type KeyCategoria, Covertype } from "../types"
+import { type KeyCategory, Covers } from "../types"
 
-export default function useFilms({ page }: { page: KeyCategoria }) {
-  const [films, setFilms] = useState<Covertype[]>([])
+export default function useFilms({ page }: { page: KeyCategory }) {
+  const [films, setFilms] = useState<Covers[]>([])
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import useFilmDetails from "../../Hook/useFilmDetails"
 import Spinner from "../../components/Spinner"
 import "./styles.css"
+import Cover from "../../components/Cover"
 
 export default function Details({
   params: { id },
@@ -27,10 +28,10 @@ export default function Details({
       {loading ? (
         <Spinner />
       ) : (
-        <img
-          className="img-details"
-          src={`https://image.tmdb.org/t/p/original${filmDetails.poster_path}`}
-          alt={filmDetails.title}
+        <Cover
+          original_title={filmDetails.title}
+          poster_path={filmDetails.poster_path}
+          id={id}
         />
       )}
       <p>{filmDetails.tagline}</p>

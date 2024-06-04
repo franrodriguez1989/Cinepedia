@@ -1,9 +1,9 @@
-export type KeyCategoria =
+export type KeyCategory =
   | "populares"
   | "proximamente"
   | "cartelera"
   | "mejor puntuadas"
-export type Covertype = {
+export type Covers = {
   original_title: string
   poster_path: string
   id: string
