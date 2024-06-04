@@ -5,15 +5,15 @@ import "./styles.css"
 import { type KeyCategory } from "../../types"
 
 export default function Home({
-  params: { page = "populares" },
+  params: { cat = "populares" },
 }: {
-  params: { page: KeyCategory }
+  params: { cat: KeyCategory }
 }) {
-  const { loading, films } = useFilms({ page })
+  const { loading, films } = useFilms({ cat })
 
   return (
     <>
-      <h1>Películas {page}</h1>
+      <h1>Películas {cat}</h1>
       {loading ? <Spinner /> : <CoversGrid covers={films} />}
     </>
   )

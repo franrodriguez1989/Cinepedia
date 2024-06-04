@@ -3,16 +3,16 @@ import { useState, useEffect } from "react"
 import getFilms from "../services/getFilms"
 import { type KeyCategory, Covers } from "../types"
 
-export default function useFilms({ page }: { page: KeyCategory }) {
+export default function useFilms({ cat }: { cat: KeyCategory }) {
   const [films, setFilms] = useState<Covers[]>([])
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setLoading(true)
-    getFilms({ page })
+    getFilms({ cat })
       .then((res) => setFilms(res))
       .finally(() => setLoading(false))
-  }, [page])
+  }, [cat])
 
   return { films, loading }
 }
