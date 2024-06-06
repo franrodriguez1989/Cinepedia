@@ -9,12 +9,11 @@
   font-size: 20px;
 }
 
-.topbar .button-page {
+.button-page {
   margin-left: 20px;
 }
-.topbar .ultimbutton-page {
-  margin-right: 20px;
-  margin-left: 20px;
+.ultimbutton-page {
+  margin-inline: 20px;
 }
 
 .topbar a {
@@ -31,6 +30,14 @@
 }
 
 .topbar a:hover {
+  background-color: #71efd5;
+  color: #fff;
+}
+.button-page .selected {
+  background-color: #71efd5;
+  color: #fff;
+}
+.ultimbutton-page .selected {
   background-color: #71efd5;
   color: #fff;
 }

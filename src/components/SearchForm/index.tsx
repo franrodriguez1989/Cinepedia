@@ -3,12 +3,19 @@ import { useState } from "react"
 
 import "./styles.css"
 
-export default function SearForm() {
+interface SearFormProps {
+  changeSelected: (buttonName: string) => void
+}
+
+export default function SearForm({
+  changeSelected,
+}: SearFormProps): JSX.Element {
   const [keyword, setKeyword] = useState("")
   const setLocation = useLocation()[1]
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    changeSelected(keyword)
     setLocation(`/SearchFilms/${keyword}`)
     setKeyword("")
   }
