@@ -15,9 +15,11 @@ export default function SearForm({
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    changeSelected(keyword)
-    setLocation(`/SearchFilms/${keyword}`)
-    setKeyword("")
+    if (keyword) {
+      changeSelected(keyword)
+      setLocation(`/SearchFilms/${keyword}`)
+      setKeyword("")
+    }
   }
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(evt.target.value)

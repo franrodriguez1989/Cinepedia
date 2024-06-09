@@ -10,6 +10,7 @@ export default function SearchPage({
   params: { keyword: string }
 }) {
   const page = useState(1)[0]
+
   const { loading, films } = useSearchFilms(keyword, page)
 
   return (
