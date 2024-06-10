@@ -31,7 +31,6 @@ export default function Details({
         <Cover
           original_title={filmDetails.title}
           poster_path={filmDetails.poster_path}
-          id={id}
         />
       )}
       <p>{filmDetails.tagline}</p>

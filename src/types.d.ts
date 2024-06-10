@@ -6,7 +6,7 @@ export type KeyCategory =
 export type Covers = {
   original_title: string
   poster_path: string
-  id: string
+  id?: string
 }
 type Genre = {
   id: number
