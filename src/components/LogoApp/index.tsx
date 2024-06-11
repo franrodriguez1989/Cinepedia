@@ -1,14 +1,13 @@
 import logo from "../../../public/Cinepedia.png"
-import "./styles.css"
 
 export default function LogoApp() {
   return (
-    <div className="logo-container">
+    <div className=" flex justify-center">
       <img
         onClick={() => {
           window.history.back()
         }}
-        className="logo"
+        className="w-72 cursor-pointer"
         src={logo}
         alt="Logo"
       />

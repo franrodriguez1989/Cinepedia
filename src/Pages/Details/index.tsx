@@ -13,7 +13,7 @@ export default function Details({
   return (
     <div className="details">
       <h1 className="details-h1">Detalles de Pelicula: {filmDetails.title}</h1>
-      <h2>
+      <h2 className=" text-xl font-medium my-2">
         Generos de la pelicula:{" "}
         {filmDetails.genres &&
           filmDetails.genres.map((elem, index: number) => {
@@ -33,8 +33,8 @@ export default function Details({
           poster_path={filmDetails.poster_path}
         />
       )}
-      <p>{filmDetails.tagline}</p>
-      <p>
+      <p className=" mb-4 mt-3 text-slate-500">{filmDetails.tagline}</p>
+      <p className=" font-medium">
         Descripción: <br />
         {filmDetails.overview}
       </p>

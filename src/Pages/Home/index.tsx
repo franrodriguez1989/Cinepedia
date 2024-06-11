@@ -1,7 +1,6 @@
 import useFilms from "../../Hook/useFilms"
 import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
-import "./styles.css"
 import { type KeyCategory } from "../../types"
 
 export default function Home({
@@ -13,7 +12,10 @@ export default function Home({
 
   return (
     <>
-      <h1>Películas {cat}</h1>
+      <div className="flex my-3 justify-center text-3xl">
+        <h1 className=" text-black my-3 font-bold">Películas {cat}</h1>
+      </div>
+
       {loading ? <Spinner /> : <CoversGrid covers={films} />}
     </>
   )

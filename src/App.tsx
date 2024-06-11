@@ -1,5 +1,4 @@
 import { Route } from "wouter"
-import "./App.css"
 
 import TopBar from "./components/TopBar"
 import LogoApp from "./components/LogoApp"
@@ -10,7 +9,7 @@ import SearchPage from "./Pages/SearchPage"
 function App() {
   return (
     <>
-      <div className="app-content">
+      <div>
         <LogoApp />
         <TopBar />
         <Route component={Home} path="/:cat" />

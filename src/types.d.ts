@@ -19,3 +19,9 @@ export type Datosfilm = {
   tagline: string
   overview: string
 }
+export type ButtonPanelProps = {
+  children: React.ReactNode
+  className: string
+  name: string
+  select: (name: string) => void
+}

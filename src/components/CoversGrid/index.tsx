@@ -1,10 +1,9 @@
 import Cover from "../Cover"
 import { type Covers } from "../../types"
-import "./styles.css"
 
 export default function CoversGrid({ covers }: { covers: Covers[] }) {
   return (
-    <div className="covers-container">
+    <div className="flex flex-wrap justify-center gap-4 my-4">
       {covers.map((cover, index: number) =>
         cover.poster_path !== null ? (
           <Cover
