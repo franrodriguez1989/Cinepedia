@@ -1,8 +1,4 @@
-export type KeyCategory =
-  | "populares"
-  | "proximamente"
-  | "cartelera"
-  | "mejor puntuadas"
+export type KeyCategory = "popular" | "upcoming" | "now_playing" | "top_rated"
 export type Covers = {
   original_title: string
   poster_path: string
@@ -20,7 +16,7 @@ export type Datosfilm = {
   overview: string
 }
 export type ButtonPanelProps = {
-  children: React.ReactNode
+  title: string
   className: string
   name: string
   select: (name: string) => void

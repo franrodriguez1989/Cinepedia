@@ -5,7 +5,7 @@ interface SearFormProps {
   changeSelected: (buttonName: string) => void
 }
 
-export default function SearForm({
+export default function SearchForm({
   changeSelected,
 }: SearFormProps): JSX.Element {
   const [keyword, setKeyword] = useState("")
@@ -15,7 +15,7 @@ export default function SearForm({
     event.preventDefault()
     if (keyword) {
       changeSelected(keyword)
-      setLocation(`/SearchFilms/${keyword}`)
+      setLocation(`/searchfilms/${keyword}`)
       setKeyword("")
     }
   }

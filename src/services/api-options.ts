@@ -6,8 +6,8 @@ export const options = {
   },
 }
 export const category = {
-  populares: "popular",
-  proximamente: "upcoming",
-  cartelera: "now_playing",
-  "mejor puntuadas": "top_rated",
+  popular: "Populares",
+  upcoming: "Proximamente",
+  now_playing: "Cartelera",
+  top_rated: "Mejor valoradas",
 }

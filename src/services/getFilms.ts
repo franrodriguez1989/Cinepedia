@@ -1,4 +1,4 @@
-import { options, category } from "./api-options"
+import { options } from "./api-options"
 import { type KeyCategory } from "../types"
 
 export default function getFilms({
@@ -9,9 +9,7 @@ export default function getFilms({
   page?: number
 }) {
   const filmPopular = fetch(
-    `${import.meta.env.VITE_BASE_URL}${
-      category[cat]
-    }?language=es&cat=1&page=${page}&region=es`,
+    `${import.meta.env.VITE_BASE_URL}${cat}?language=es&cat=1&page=${page}&region=es`,
     options
   )
     .then((response) => response.json())
