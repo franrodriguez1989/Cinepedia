@@ -1,6 +1,5 @@
 import useFilmDetails from "../../Hook/useFilmDetails"
 import Spinner from "../../components/Spinner"
-import "./styles.css"
 import Cover from "../../components/Cover"
 
 export default function Details({
@@ -11,8 +10,10 @@ export default function Details({
   const { filmDetails, loading } = useFilmDetails({ id })
 
   return (
-    <div className="details">
-      <h1 className="details-h1">Detalles de Pelicula: {filmDetails.title}</h1>
+    <div className=" flex flex-col items-center m-3">
+      <h1 className=" text-4xl font-semibold">
+        Detalles de Pelicula: {filmDetails.title}
+      </h1>
       <h2 className=" text-xl font-medium my-2">
         Generos de la pelicula:{" "}
         {filmDetails.genres &&
