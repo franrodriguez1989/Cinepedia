@@ -8,10 +8,7 @@ export default function getSearchFilms(keyword: string, page: number = 1) {
     options
   )
     .then((response) => response.json())
-    .then((res) => {
-      const { results } = res
-      return results
-    })
+    .then((res) => res.results)
     .catch((error) => {
       console.error("There was a problem with the fetch operation:", error)
     })

@@ -13,10 +13,7 @@ export default function getFilms({
     options
   )
     .then((response) => response.json())
-    .then((res) => {
-      const { results } = res
-      return results
-    })
+    .then((res) => res.results)
     .catch((error) => {
       console.error("There was a problem with the fetch operation:", error)
     })

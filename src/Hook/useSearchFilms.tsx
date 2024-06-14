@@ -1,18 +1,12 @@
-import { useState, useEffect } from "react"
-
 import { type Covers } from "../types"
 import getSearchFilms from "../services/getSearchFilms"
+import { useQuery } from "@tanstack/react-query"
 
 export default function useSearchFilms(keyword: string, page: number) {
-  const [films, setFilms] = useState<Covers[]>([])
-  const [loading, setLoading] = useState(false)
+  const { isLoading: loading, data: films } = useQuery<Covers[]>({
+    queryKey: ["films", keyword, page],
+    queryFn: () => getSearchFilms(keyword, page),
+  })
 
-  useEffect(() => {
-    setLoading(true)
-    getSearchFilms(keyword, page)
-      .then((res) => setFilms(res))
-      .finally(() => setLoading(false))
-  }, [keyword, page])
-
-  return { films, loading }
+  return { films: films ?? [], loading }
 }

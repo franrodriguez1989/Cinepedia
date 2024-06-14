@@ -1,18 +1,12 @@
-import { useState, useEffect } from "react"
-
+import { useQuery } from "@tanstack/react-query"
 import getFilms from "../services/getFilms"
 import { type KeyCategory, Covers } from "../types"
 
 export default function useFilms({ cat }: { cat: KeyCategory }) {
-  const [films, setFilms] = useState<Covers[]>([])
-  const [loading, setLoading] = useState(false)
+  const { isLoading: loading, data: films } = useQuery<Covers[]>({
+    queryKey: ["films", cat],
+    queryFn: () => getFilms({ cat }),
+  })
 
-  useEffect(() => {
-    setLoading(true)
-    getFilms({ cat })
-      .then((res) => setFilms(res))
-      .finally(() => setLoading(false))
-  }, [cat])
-
-  return { films, loading }
+  return { films: films ?? [], loading }
 }
