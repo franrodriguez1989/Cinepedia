@@ -15,9 +15,14 @@ export type Datosfilm = {
   tagline: string
   overview: string
 }
+export interface ButtonSetProps {
+  params: {
+    cat: string
+  }
+  homePage: boolean
+}
 export type ButtonPanelProps = {
   title: string
   className: string
   name: string
-  select: (name: string) => void
 }

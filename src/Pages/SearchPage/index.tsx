@@ -25,7 +25,7 @@ export default function SearchPage({
           <CoversGrid covers={films} />
         )
       ) : (
-        <h1 className="h1-error">No se encontraron peliculas</h1>
+        <h1 className=" text-5xl text-center">No se encontraron peliculas</h1>
       )}
     </>
   )

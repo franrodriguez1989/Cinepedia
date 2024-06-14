@@ -1,20 +1,14 @@
 import { useLocation } from "wouter"
 import { useState } from "react"
+import IconSearch from "../Icons/IconSearch"
 
-interface SearFormProps {
-  changeSelected: (buttonName: string) => void
-}
-
-export default function SearchForm({
-  changeSelected,
-}: SearFormProps): JSX.Element {
+export default function SearchForm(): JSX.Element {
   const [keyword, setKeyword] = useState("")
   const setLocation = useLocation()[1]
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (keyword) {
-      changeSelected(keyword)
       setLocation(`/searchfilms/${keyword}`)
       setKeyword("")
     }
@@ -37,24 +31,10 @@ export default function SearchForm({
           type="text"
         />
         <button
-          className="rounded-md text-sm font-medium  transition-colors h-10 px-4 py-2 bg-gray-400 hover:bg-yellow-300"
+          className="rounded-md text-sm font-medium  transition-colors h-10 px-4 py-2 bg-gray-400 md:hover:bg-yellow-300"
           type="submit"
         >
-          <svg
-            className="h-5 w-5 text-white"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.3-4.3" />
-          </svg>
+          <IconSearch />
         </button>
       </form>
     </div>

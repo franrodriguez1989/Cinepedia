@@ -1,38 +1,37 @@
-import { useContext } from "react"
+import { useState } from "react"
 import SearchForm from "../SearchForm"
-import TabContext from "../../context/TabContext"
-import DropDownMenu from "../Icons/DropDownMenu"
+import { useRoute } from "wouter"
+import ButtonDropDownMenu from "../Icons/ButtonDropDownMenu"
 import ButtonSet from "../ButtonSet/ButtonSet"
 import ButtonSetSmartphone from "../ButtonSet/ButtonSetSmartphone"
 
 export default function TopBar() {
+  const [showPanel, setShowPanel] = useState(false)
   const handleclick = () => {
-    const panel = document.getElementById("panel") as HTMLFormElement
-
-    panel.style.display === "none"
-      ? (panel.style.display = "flex")
-      : (panel.style.display = "none")
+    setShowPanel((prev) => !prev)
   }
+  const [homePage] = useRoute("/")
 
-  const { tabSelected, setTabSelected } = useContext(TabContext)
+  const [, params] = useRoute<{ cat: string }>("/:cat?")
+  const safeParams = params ? params : { cat: "notNull" }
   return (
     <header className=" bg-white p-2 border-2 ">
       <div className=" justify-between flex h-12 items-center ">
         <div className=" flex justify-evenly">
-          <button onClick={handleclick} className=" md:hidden m-2">
-            <DropDownMenu />
+          <button
+            onClick={handleclick}
+            className={`md:hidden m-2 ${showPanel ? " focus:ring-2 ring-gray-400 bg-gray-300 text-white" : "text-gray-400"} rounded-md p-1 `}
+          >
+            <ButtonDropDownMenu />
           </button>
-          <ButtonSet
-            tabSelected={tabSelected}
-            setTabSelected={setTabSelected}
-          />
+          <ButtonSet params={safeParams} homePage={homePage} />
         </div>
-        <SearchForm changeSelected={setTabSelected} />
+        <SearchForm />
       </div>
-      <ButtonSetSmartphone
-        tabSelected={tabSelected}
-        setTabSelected={setTabSelected}
-      />
+
+      {showPanel && (
+        <ButtonSetSmartphone params={safeParams} homePage={homePage} />
+      )}
     </header>
   )
 }
