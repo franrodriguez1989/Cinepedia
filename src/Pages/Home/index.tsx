@@ -14,7 +14,7 @@ export default function Home({
   return (
     <>
       <div className="flex my-3 justify-center text-3xl mx-auto">
-        <h1 className=" text-black my-3 font-bold">
+        <h1 className=" text-black my-5 font-bold italic">
           Películas {category[cat]}
         </h1>
       </div>

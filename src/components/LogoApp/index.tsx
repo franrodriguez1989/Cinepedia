@@ -1,5 +1,5 @@
 import { Link } from "wouter"
-import logo from "/Cinepedia.png"
+import logo from "/Cinepedia2.png"
 
 export default function LogoApp() {
   return (
