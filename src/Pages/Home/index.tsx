@@ -2,6 +2,7 @@ import useFilms from "../../Hook/useFilms"
 import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
 import { type KeyCategory } from "../../types"
+import { useState } from "react"
 
 const category = {
   popular: "Populares",
@@ -15,6 +16,7 @@ export default function Home({
 }: {
   params: { cat: KeyCategory }
 }) {
+  const [currentPage] = useState(1)
   const { loading, films } = useFilms({ cat })
 
   return (
@@ -25,7 +27,11 @@ export default function Home({
         </h1>
       </div>
 
-      {loading ? <Spinner /> : <CoversGrid covers={films} />}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <CoversGrid covers={films} currentPage={currentPage} />
+      )}
     </>
   )
 }

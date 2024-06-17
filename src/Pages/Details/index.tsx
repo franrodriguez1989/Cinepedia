@@ -41,7 +41,7 @@ export default function Details({
         />
       )}
       <p className=" mb-4 mt-3 text-slate-500">{filmDetails.tagline}</p>
-      <div className=" w-2/3 text-left my-4">
+      <div className=" w-fit text-left my-4">
         <p className=" font-medium">
           Descripción: <br />
           {filmDetails.overview}
