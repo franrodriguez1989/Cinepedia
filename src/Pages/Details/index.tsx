@@ -11,25 +11,27 @@ export default function Details({
 
   return (
     <div className=" flex flex-col items-center m-3">
-      <h1 className=" text-4xl font-semibold">
-        Detalles de Pelicula: {filmDetails.title}
-      </h1>
-      <h2 className=" text-xl font-medium my-2">
-        Generos de la pelicula:{" "}
-        {filmDetails.genres &&
-          filmDetails.genres.map((elem, index: number) => {
-            return (
-              <span key={index}>
-                {elem.name}
-                {filmDetails.genres.length - 1 === index
-                  ? "."
-                  : filmDetails.genres.length - 2 === index
-                    ? " y "
-                    : ", "}
-              </span>
-            )
-          })}
-      </h2>
+      <div className=" text-4xl font-semibold my-4 w-full text-center">
+        <h1>Detalles de la Pelicula: {filmDetails.title}</h1>
+      </div>
+      <div className=" text-xl font-medium my-4 w-full text-center">
+        <h2>
+          Generos de la pelicula:{" "}
+          {filmDetails.genres &&
+            filmDetails.genres.map((elem, index: number) => {
+              return (
+                <span key={index}>
+                  {elem.name}
+                  {filmDetails.genres.length - 1 === index
+                    ? "."
+                    : filmDetails.genres.length - 2 === index
+                      ? " y "
+                      : ", "}
+                </span>
+              )
+            })}
+        </h2>
+      </div>
       {loading ? (
         <Spinner />
       ) : (
@@ -39,10 +41,12 @@ export default function Details({
         />
       )}
       <p className=" mb-4 mt-3 text-slate-500">{filmDetails.tagline}</p>
-      <p className=" font-medium">
-        Descripción: <br />
-        {filmDetails.overview}
-      </p>
+      <div className=" w-2/3 text-left my-4">
+        <p className=" font-medium">
+          Descripción: <br />
+          {filmDetails.overview}
+        </p>
+      </div>
     </div>
   )
 }
