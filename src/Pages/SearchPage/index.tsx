@@ -18,12 +18,10 @@ export default function SearchPage({
         <h1 className=" text-black my-3 font-bold">Películas de {keyword}</h1>
       </div>
 
-      {films.length !== 0 ? (
-        loading ? (
-          <Spinner />
-        ) : (
-          <CoversGrid covers={films} />
-        )
+      {loading ? (
+        <Spinner />
+      ) : films.length !== 0 ? (
+        <CoversGrid covers={films} />
       ) : (
         <h1 className=" text-5xl text-center">No se encontraron peliculas</h1>
       )}

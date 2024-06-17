@@ -2,7 +2,13 @@ import useFilms from "../../Hook/useFilms"
 import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
 import { type KeyCategory } from "../../types"
-import { category } from "../../services/api-options"
+
+const category = {
+  popular: "Populares",
+  upcoming: "Proximamente",
+  now_playing: "Cartelera",
+  top_rated: "Mejor valoradas",
+}
 
 export default function Home({
   params: { cat = "popular" },

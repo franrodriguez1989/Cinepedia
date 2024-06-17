@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
 import getDetails from "../services/getDetails"
-import { type Datosfilm } from "../types"
+import { Datosfilm } from "../types"
+import { useQuery } from "@tanstack/react-query"
 
 export default function useFilmDetails({ id }: { id: string }) {
   const initialDatos: Datosfilm = {
@@ -10,16 +10,12 @@ export default function useFilmDetails({ id }: { id: string }) {
     tagline: "",
     overview: "",
   }
-  const [loading, setLoading] = useState(false)
-  const [filmDetails, setFilmDetails] = useState<Datosfilm>(initialDatos)
 
-  useEffect(() => {
-    setLoading(true)
-    getDetails({ id }).then((res) => {
-      setFilmDetails(res)
-      setLoading(false)
+  const { isLoading: loading, data: filmDetails = initialDatos } =
+    useQuery<Datosfilm>({
+      queryKey: ["filmDetails", id],
+      queryFn: () => getDetails({ id }),
     })
-  }, [id])
 
   return { filmDetails, loading }
 }

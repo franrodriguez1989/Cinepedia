@@ -1,4 +1,4 @@
-import { options } from "./api-options"
+import axios from "./axiosConfig"
 import { type KeyCategory } from "../types"
 
 export default function getFilms({
@@ -8,17 +8,10 @@ export default function getFilms({
   cat: KeyCategory
   page?: number
 }) {
-  const filmPopular = fetch(
-    `${import.meta.env.VITE_BASE_URL}${cat}?language=es&cat=1&page=${page}&region=es`,
-    options
-  )
-    .then((response) => response.json())
-    .then((res) => {
-      const { results } = res
-      return results
-    })
+  return axios
+    .get(`/movie/${cat}?language=es&cat=1&page=${page}&region=es`)
+    .then((res) => res.data.results)
     .catch((error) => {
-      console.error("There was a problem with the fetch operation:", error)
+      console.error("There was a problem with the axios operation:", error)
     })
-  return filmPopular
 }
