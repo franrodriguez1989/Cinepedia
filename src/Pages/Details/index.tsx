@@ -21,7 +21,11 @@ export default function Details({
             return (
               <span key={index}>
                 {elem.name}
-                {filmDetails.genres.length - 1 === index ? "." : ", "}
+                {filmDetails.genres.length - 1 === index
+                  ? "."
+                  : filmDetails.genres.length - 2 === index
+                    ? " y "
+                    : ", "}
               </span>
             )
           })}
