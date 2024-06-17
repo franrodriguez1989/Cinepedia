@@ -3,7 +3,7 @@ import { type Covers } from "../../types"
 
 export default function CoversGrid({ covers }: { covers: Covers[] }) {
   return (
-    <div className="flex flex-wrap justify-center gap-6 my-4 mx-3">
+    <div className="flex flex-wrap justify-center md:gap-6 gap-2 my-4 mx-3">
       {covers.map((cover, index: number) =>
         cover.poster_path !== null ? (
           <Cover

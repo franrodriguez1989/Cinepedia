@@ -6,7 +6,7 @@ export default function ButtonSetSmartphone({
   homePage,
 }: ButtonSetProps) {
   return (
-    <div className="md:hidden flex flex-col bg-white w-auto h-auto border-t-2 border-gray-200 mt-2">
+    <div className="sm:hidden flex flex-col bg-white w-auto h-auto border-t-2 border-gray-200 mt-2">
       <ButtonPanel
         className={`${params.cat === "popular" || homePage ? "bg-gray-300 font-bold text-black w-24 mt-2" : "text-gray-500 hover:font-semibold w-24 mt-2"}`}
         name="popular"

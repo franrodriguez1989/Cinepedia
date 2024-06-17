@@ -3,7 +3,7 @@ import { ButtonSetProps } from "../../types"
 
 export default function ButtonSet({ params, homePage }: ButtonSetProps) {
   return (
-    <div className="hidden md:flex items-center">
+    <div className="hidden sm:flex items-center">
       <ButtonPanel
         className={`${params.cat === "popular" || homePage ? "bg-gray-300 font-bold text-black" : "text-gray-500 hover:font-semibold"}`}
         name="popular"

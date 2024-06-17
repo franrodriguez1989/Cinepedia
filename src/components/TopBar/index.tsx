@@ -20,7 +20,7 @@ export default function TopBar() {
         <div className=" flex justify-evenly">
           <button
             onClick={handleclick}
-            className={`md:hidden m-2 ${showPanel ? " focus:ring-2 ring-gray-400 bg-gray-300 text-white" : "text-gray-400"} rounded-md p-1 `}
+            className={`sm:hidden m-2 ${showPanel ? " focus:ring-2 ring-gray-400 bg-gray-300 text-white" : "text-gray-400"} rounded-md p-1 `}
           >
             <ButtonDropDownMenu />
           </button>
