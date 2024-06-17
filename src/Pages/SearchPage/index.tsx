@@ -3,14 +3,14 @@ import CoversGrid from "../../components/CoversGrid"
 import useSearchFilms from "../../Hook/useSearchFilms"
 import { useState } from "react"
 
-export default function SearchPage({
+export default function SearchcurrentPage({
   params: { keyword },
 }: {
   params: { keyword: string }
 }) {
-  const page = useState(1)[0]
+  const [currentPage] = useState(1)
 
-  const { loading, films } = useSearchFilms(keyword, page)
+  const { loading, films } = useSearchFilms(keyword, currentPage)
 
   return (
     <>
@@ -21,7 +21,7 @@ export default function SearchPage({
       {loading ? (
         <Spinner />
       ) : films.length !== 0 ? (
-        <CoversGrid covers={films} />
+        <CoversGrid covers={films} currentPage={currentPage} />
       ) : (
         <h1 className=" text-5xl text-center">No se encontraron peliculas</h1>
       )}
