@@ -1,9 +1,10 @@
+import getCredits from "../services/getCredits"
 import getDetails from "../services/getDetails"
-import { Datosfilm } from "../types"
+import type { Datafilm, Credits } from "../types"
 import { useQuery } from "@tanstack/react-query"
 
 export default function useFilmDetails({ id }: { id: string }) {
-  const initialDatos: Datosfilm = {
+  const initialData: Datafilm = {
     title: "",
     genres: [],
     poster_path: "",
@@ -11,11 +12,15 @@ export default function useFilmDetails({ id }: { id: string }) {
     overview: "",
   }
 
-  const { isLoading: loading, data: filmDetails = initialDatos } =
-    useQuery<Datosfilm>({
+  const { isLoading: loadingDetails, data: filmDetails = initialData } =
+    useQuery<Datafilm>({
       queryKey: ["filmDetails", id],
       queryFn: () => getDetails({ id }),
     })
+  const { isLoading: loadingCredits, data: filmCredits } = useQuery<Credits>({
+    queryKey: ["filmCredits", id],
+    queryFn: () => getCredits({ id }),
+  })
 
-  return { filmDetails, loading }
+  return { filmDetails, loadingDetails, loadingCredits, filmCredits }
 }
