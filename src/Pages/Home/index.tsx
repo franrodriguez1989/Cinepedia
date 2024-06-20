@@ -2,7 +2,8 @@ import useFilms from "../../Hook/useFilms"
 import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
 import { type KeyCategory } from "../../types"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import ButtonPages from "../../components/ButtonSet/ButtonPages"
 
 const category = {
   popular: "Populares",
@@ -16,8 +17,16 @@ export default function Home({
 }: {
   params: { cat: KeyCategory }
 }) {
-  const [currentPage] = useState(1)
-  const { loading, films } = useFilms({ cat })
+  const [currentPage, setCurrentPage] = useState(1)
+
+  useEffect(() => {
+    setCurrentPage(1) // Reset currentPage to 1 whenever cat changes
+  }, [cat])
+
+  const { loading, films, fetchNextPage, fetchPreviousPage } = useFilms({
+    cat,
+    currentPage,
+  })
 
   return (
     <>
@@ -29,8 +38,22 @@ export default function Home({
 
       {loading ? (
         <Spinner />
+      ) : films.length > 0 ? (
+        <>
+          <CoversGrid covers={films} />
+          <ButtonPages
+            fetchNextPage={fetchNextPage}
+            fetchPreviousPage={fetchPreviousPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </>
       ) : (
-        <CoversGrid covers={films} currentPage={currentPage} />
+        <div className="flex justify-center  my-4  text-center">
+          <h1 className=" w-fit font-bold text-center text-4xl  border-y-2 border-gray-400 p-3">
+            No hay mas peliculas
+          </h1>
+        </div>
       )}
     </>
   )

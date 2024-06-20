@@ -1,17 +1,21 @@
 import axios from "./axiosConfig"
-import { type KeyCategory } from "../types"
+import { type KeyCategory, Covers } from "../types"
 
 export default function getFilms({
   cat,
-  page = 1,
+  pageParam = 1,
 }: {
   cat: KeyCategory
-  page?: number
-}) {
+  pageParam?: number
+}): Promise<{ results: Covers[]; page: number }> {
   return axios
-    .get(`/movie/${cat}?language=es&cat=1&page=${page}&region=es`)
-    .then((res) => res.data.results)
+    .get(`/movie/${cat}?language=es&cat=1&page=${pageParam}&region=es`)
+    .then((res) => {
+      const page = res.data.page
+      return { results: res.data.results, page }
+    })
     .catch((error) => {
-      console.error("There was a problem with the axios operation:", error)
+      console.error("Hubo un problema con la operación de axios:", error)
+      throw new Error("Error fetching films")
     })
 }

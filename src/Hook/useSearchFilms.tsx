@@ -1,12 +1,25 @@
 import { type Covers } from "../types"
 import getSearchFilms from "../services/getSearchFilms"
-import { useQuery } from "@tanstack/react-query"
+import { useInfiniteQuery } from "@tanstack/react-query"
 
 export default function useSearchFilms(keyword: string, currentPage: number) {
-  const { isLoading: loading, data: films } = useQuery<Covers[]>({
-    queryKey: ["films", keyword, currentPage],
-    queryFn: () => getSearchFilms(keyword, currentPage),
+  const {
+    data,
+    fetchPreviousPage,
+    fetchNextPage,
+    isLoading: loading,
+  } = useInfiniteQuery<{ results: Covers[]; page: number }, Error>({
+    queryKey: ["filmsInfinite", keyword],
+    queryFn: ({ pageParam }) =>
+      getSearchFilms(keyword, (pageParam = pageParam as number)),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => lastPage.page + 1,
   })
+  const filmsFlatMap = data?.pages.flatMap((page) => page.results) || []
 
-  return { films: films ?? [], loading }
+  const CoversPerPage = 18
+  const indexOfLastCover = CoversPerPage * currentPage
+  const indexOfFirstCover = indexOfLastCover - CoversPerPage
+  const films = filmsFlatMap.slice(indexOfFirstCover, indexOfLastCover)
+  return { films, loading, fetchNextPage, fetchPreviousPage }
 }

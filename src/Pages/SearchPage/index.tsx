@@ -1,16 +1,24 @@
 import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
 import useSearchFilms from "../../Hook/useSearchFilms"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import ButtonPages from "../../components/ButtonSet/ButtonPages"
 
 export default function SearchcurrentPage({
   params: { keyword },
 }: {
   params: { keyword: string }
 }) {
-  const [currentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
 
-  const { loading, films } = useSearchFilms(keyword, currentPage)
+  useEffect(() => {
+    setCurrentPage(1) // Reset currentPage to 1 whenever cat changes
+  }, [keyword])
+
+  const { loading, films, fetchNextPage, fetchPreviousPage } = useSearchFilms(
+    keyword,
+    currentPage
+  )
 
   return (
     <>
@@ -21,9 +29,21 @@ export default function SearchcurrentPage({
       {loading ? (
         <Spinner />
       ) : films.length !== 0 ? (
-        <CoversGrid covers={films} currentPage={currentPage} />
+        <>
+          <CoversGrid covers={films} />
+          <ButtonPages
+            fetchNextPage={fetchNextPage}
+            fetchPreviousPage={fetchPreviousPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </>
       ) : (
-        <h1 className=" text-5xl text-center">No se encontraron peliculas</h1>
+        <div className="flex justify-center  my-4  text-center">
+          <h1 className=" w-fit font-bold text-center text-4xl  border-y-2 border-gray-400 p-3">
+            No hay mas peliculas
+          </h1>
+        </div>
       )}
     </>
   )

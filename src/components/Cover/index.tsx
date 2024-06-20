@@ -15,7 +15,7 @@ export default function Cover({ original_title, poster_path, id }: Covers) {
   ) : (
     <img
       className=" w-64 h-auto rounded-2xl border-2 border-black shadow-lg shadow-slate-400"
-      src={`https://image.tmdb.org/t/p/original${poster_path}`}
+      src={imageUrl}
       alt={original_title}
     />
   )

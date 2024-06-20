@@ -1,21 +1,10 @@
 import Cover from "../Cover"
 import { type Covers } from "../../types"
 
-export default function CoversGrid({
-  covers,
-  currentPage,
-}: {
-  covers: Covers[]
-  currentPage: number
-}) {
-  const CoversPerPage = 18
-  const indexOfLastCover = CoversPerPage * currentPage
-  const indexOfFirstCover = indexOfLastCover - CoversPerPage
-  const currentCovers = covers.slice(indexOfFirstCover, indexOfLastCover)
-
+export default function CoversGrid({ covers }: { covers: Covers[] }) {
   return (
     <div className="flex flex-wrap justify-center md:gap-6 gap-2 my-4 mx-3">
-      {currentCovers.map((cover, index: number) => (
+      {covers.map((cover, index: number) => (
         <Cover
           key={index}
           original_title={cover.original_title}
