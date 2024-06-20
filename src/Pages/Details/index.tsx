@@ -25,7 +25,7 @@ export default function Details({
   return (
     <div className=" flex flex-col items-center m-3">
       <div className="  my-4  text-center">
-        <h1 className=" border-y-2 border-gray-400 my-7 italic text-5xl font-semibold w-full text-center p-6">
+        <h1 className=" border-y-2 border-gray-400 my-7 italic text-2xl sm:text-5xl font-semibold w-full text-center p-6">
           {filmDetails.title}
         </h1>
       </div>
