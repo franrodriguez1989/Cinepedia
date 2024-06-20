@@ -13,7 +13,7 @@ export default function useFilms({
     data,
     fetchPreviousPage,
     fetchNextPage,
-    isLoading: loading,
+    isFetching: loading,
   } = useInfiniteQuery<{ results: Covers[]; page: number }, Error>({
     queryKey: ["filmsInfinite", cat],
     queryFn: ({ pageParam }) =>

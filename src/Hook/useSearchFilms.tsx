@@ -7,7 +7,7 @@ export default function useSearchFilms(keyword: string, currentPage: number) {
     data,
     fetchPreviousPage,
     fetchNextPage,
-    isLoading: loading,
+    isFetching: loading,
   } = useInfiniteQuery<{ results: Covers[]; page: number }, Error>({
     queryKey: ["filmsInfinite", keyword],
     queryFn: ({ pageParam }) =>
