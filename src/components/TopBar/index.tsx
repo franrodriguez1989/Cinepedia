@@ -12,7 +12,7 @@ export default function TopBar() {
   }
   const [homePage] = useRoute("/")
 
-  const [, params] = useRoute<{ cat: string }>("/:cat?")
+  const [, params] = useRoute<{ cat: string }>("/home/:cat?/:page?")
   const safeParams = params ? params : { cat: "notNull" }
   return (
     <header className=" bg-white p-2 border-2 ">
