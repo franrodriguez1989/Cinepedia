@@ -1,24 +1,16 @@
 import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
 import useSearchFilms from "../../Hook/useSearchFilms"
-import { useState, useEffect } from "react"
 import ButtonPages from "../../components/ButtonSet/ButtonPages"
 
 export default function SearchcurrentPage({
-  params: { keyword },
+  params: { keyword, page },
 }: {
-  params: { keyword: string }
+  params: { keyword: string; page: string }
 }) {
-  const [currentPage, setCurrentPage] = useState(1)
+  const currentPage: number = page ? parseInt(page) : 1
 
-  useEffect(() => {
-    setCurrentPage(1) // Reset currentPage to 1 whenever cat changes
-  }, [keyword])
-
-  const { loading, films, fetchNextPage, fetchPreviousPage } = useSearchFilms(
-    keyword,
-    currentPage
-  )
+  const { loading, films } = useSearchFilms(keyword, currentPage)
 
   return (
     <>
@@ -31,12 +23,7 @@ export default function SearchcurrentPage({
       ) : films.length !== 0 ? (
         <>
           <CoversGrid covers={films} />
-          <ButtonPages
-            fetchNextPage={fetchNextPage}
-            fetchPreviousPage={fetchPreviousPage}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+          <ButtonPages currentPage={currentPage} keyword={keyword} />
         </>
       ) : (
         <div className="flex justify-center  my-4  text-center">
