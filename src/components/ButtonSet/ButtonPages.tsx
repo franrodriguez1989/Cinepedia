@@ -1,21 +1,21 @@
+import { useLocation, useRoute } from "wouter"
+
 export default function ButtonPages({
-  fetchNextPage,
-  fetchPreviousPage,
   currentPage,
-  setCurrentPage,
+  keyword,
 }: {
-  fetchNextPage: () => void
-  fetchPreviousPage: () => void
   currentPage: number
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+  keyword: string
 }) {
+  const [match] = useRoute("/searchfilms/:keyword/:page?")
+
+  const base = match ? "searchfilms" : "home"
+  const [, setLocation] = useLocation()
   const handleClickNext = () => {
-    fetchNextPage()
-    setCurrentPage((prevPage) => prevPage + 1)
+    setLocation(`/${base}/${keyword}/${currentPage + 1}`)
   }
   const handleClickPrev = () => {
-    fetchPreviousPage()
-    setCurrentPage((prevPage) => prevPage - 1)
+    setLocation(`/${base}/${keyword}/${currentPage - 1}`)
   }
 
   return (

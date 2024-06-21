@@ -2,7 +2,6 @@ import useFilms from "../../Hook/useFilms"
 import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
 import { type KeyCategory } from "../../types"
-import { useState, useEffect } from "react"
 import ButtonPages from "../../components/ButtonSet/ButtonPages"
 
 const category = {
@@ -13,17 +12,13 @@ const category = {
 }
 
 export default function Home({
-  params: { cat = "popular" },
+  params: { cat = "popular", page },
 }: {
-  params: { cat: KeyCategory }
+  params: { cat: KeyCategory; page: string }
 }) {
-  const [currentPage, setCurrentPage] = useState(1)
+  const currentPage: number = page ? parseInt(page) : 1
 
-  useEffect(() => {
-    setCurrentPage(1) // Reset currentPage to 1 whenever cat changes
-  }, [cat])
-
-  const { loading, films, fetchNextPage, fetchPreviousPage } = useFilms({
+  const { loading, films } = useFilms({
     cat,
     currentPage,
   })
@@ -41,12 +36,7 @@ export default function Home({
       ) : films.length > 0 ? (
         <>
           <CoversGrid covers={films} />
-          <ButtonPages
-            fetchNextPage={fetchNextPage}
-            fetchPreviousPage={fetchPreviousPage}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+          <ButtonPages currentPage={currentPage} keyword={cat} />
         </>
       ) : (
         <div className="flex justify-center  my-4  text-center">
