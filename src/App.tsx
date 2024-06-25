@@ -17,7 +17,7 @@ function App() {
           <Route component={Home} path="/home/:cat/" />
           <Route component={Home} path="/" />
           <Route component={Details} path="/details/:id" />
-          <Route component={SearchPage} path="/searchfilms/:keyword/:page?" />
+          <Route component={SearchPage} path="/searchfilms/:keyword/" />
         </TabContextProvider>
       </div>
     </>

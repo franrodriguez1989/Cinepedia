@@ -2,14 +2,23 @@ import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
 import useSearchFilms from "../../Hook/useSearchFilms"
 import ButtonPages from "../../components/ButtonSet/ButtonPages"
+import { useState, useEffect } from "react"
 
 export default function SearchcurrentPage({
-  params: { keyword, page },
+  params: { keyword },
 }: {
-  params: { keyword: string; page: string }
+  params: { keyword: string }
 }) {
-  const currentPage: number = page ? parseInt(page) : 1
+  const [currentPage, setCurrentPage] = useState(1)
 
+  const location = window.location
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const pageUrl = params.get("page")
+    const page = pageUrl ? parseInt(pageUrl) : 1
+    setCurrentPage(page)
+  }, [location.search])
   const { loading, films } = useSearchFilms(keyword, currentPage)
 
   return (
