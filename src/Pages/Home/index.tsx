@@ -4,6 +4,8 @@ import CoversGrid from "../../components/CoversGrid"
 import ButtonPages from "../../components/ButtonSet/ButtonPages"
 import { useEffect, useState } from "react"
 import { KeyCategory } from "../../types"
+import { useLocation, useParams } from "react-router-dom"
+import TopBar from "../../components/TopBar"
 
 const category = {
   popular: "Populares",
@@ -12,15 +14,12 @@ const category = {
   top_rated: "Mejor valoradas",
 }
 
-export default function Home({
-  params: { cat = "popular" },
-}: {
-  params: { cat: KeyCategory }
-}) {
+export default function Home() {
+  const { cat = "popular" } = useParams<{ cat: KeyCategory }>()
+
   const [currentPage, setCurrentPage] = useState(1)
 
-  const location = window.location
-
+  const location = useLocation()
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     const pageUrl = params.get("page")
@@ -37,6 +36,7 @@ export default function Home({
 
   return (
     <>
+      <TopBar />
       <div className="flex my-3 justify-center text-3xl mx-auto">
         <h1 className="text-black my-5 font-bold italic">
           Películas {category[cat]}

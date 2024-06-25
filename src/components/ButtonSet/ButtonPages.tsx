@@ -1,4 +1,4 @@
-import { useRoute } from "wouter"
+import { Link, useLocation } from "react-router-dom"
 
 export default function ButtonPages({
   currentPage,
@@ -7,24 +7,25 @@ export default function ButtonPages({
   currentPage: number
   keyword: string
 }) {
-  const [match] = useRoute("/searchfilms/:keyword/")
+  const location = useLocation()
+  const match = location.pathname.includes("/searchfilms")
 
   const base = match ? "searchfilms" : "home"
 
   return (
     <div className=" flex w-full justify-center">
       {currentPage > 1 && (
-        <a href={`/${base}/${keyword}?page=${currentPage - 1}`}>
+        <Link to={`/${base}/${keyword}?page=${currentPage - 1}`}>
           <button className="font-semibold p-2 bg-gray-300 m-4 rounded hover:font-bold">
             Anterior
           </button>
-        </a>
+        </Link>
       )}
-      <a href={`/${base}/${keyword}?page=${currentPage + 1}`}>
+      <Link to={`/${base}/${keyword}?page=${currentPage + 1}`}>
         <button className="font-semibold p-2 bg-gray-300 m-4 rounded hover:font-bold">
           Siguiente
         </button>
-      </a>
+      </Link>
     </div>
   )
 }

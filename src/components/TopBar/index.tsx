@@ -1,19 +1,20 @@
 import { useState } from "react"
 import SearchForm from "../SearchForm"
-import { useRoute } from "wouter"
 import ButtonDropDownMenu from "../Icons/ButtonDropDownMenu"
 import ButtonSet from "../ButtonSet/ButtonSet"
 import ButtonSetSmartphone from "../ButtonSet/ButtonSetSmartphone"
+import { useLocation, useParams } from "react-router-dom"
 
 export default function TopBar() {
   const [showPanel, setShowPanel] = useState(false)
   const handleclick = () => {
     setShowPanel((prev) => !prev)
   }
-  const [homePage] = useRoute("/")
+  const homePage = useLocation().pathname === "/"
 
-  const [, params] = useRoute<{ cat: string }>("/home/:cat?/:page?")
-  const safeParams = params ? params : { cat: "notNull" }
+  const params = useParams()
+  const safeParams = { cat: params.cat || "" }
+
   return (
     <header className=" bg-white p-2 border-2 ">
       <div className=" justify-between flex h-12 items-center ">
