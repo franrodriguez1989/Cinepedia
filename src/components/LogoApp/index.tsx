@@ -1,4 +1,4 @@
-import { Link } from "wouter"
+import { Link } from "react-router-dom"
 import logo from "/Cinepedia2.png"
 
 export default function LogoApp() {

@@ -3,15 +3,15 @@ import CoversGrid from "../../components/CoversGrid"
 import useSearchFilms from "../../Hook/useSearchFilms"
 import ButtonPages from "../../components/ButtonSet/ButtonPages"
 import { useState, useEffect } from "react"
+import { useLocation, useParams } from "react-router-dom"
+import TopBar from "../../components/TopBar"
 
-export default function SearchcurrentPage({
-  params: { keyword },
-}: {
-  params: { keyword: string }
-}) {
+export default function SearchPage() {
+  const { keyword = "" } = useParams<{ keyword: string }>()
+
   const [currentPage, setCurrentPage] = useState(1)
 
-  const location = window.location
+  const location = useLocation()
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
@@ -23,6 +23,7 @@ export default function SearchcurrentPage({
 
   return (
     <>
+      <TopBar />
       <div className="flex my-3 justify-center text-3xl">
         <h1 className=" text-black my-3 font-bold">Películas de {keyword}</h1>
       </div>

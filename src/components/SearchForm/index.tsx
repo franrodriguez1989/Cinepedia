@@ -1,15 +1,15 @@
-import { useLocation } from "wouter"
 import { useState } from "react"
 import IconSearch from "../Icons/IconSearch"
+import { useNavigate } from "react-router-dom"
 
 export default function SearchForm(): JSX.Element {
   const [keyword, setKeyword] = useState("")
-  const setLocation = useLocation()[1]
+  const navigate = useNavigate()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (keyword) {
-      setLocation(`/searchfilms/${keyword}`)
+      navigate(`/searchfilms/${keyword}`)
       setKeyword("")
     }
   }
