@@ -3,6 +3,8 @@ import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
 import { type KeyCategory } from "../../types"
 import ButtonPages from "../../components/ButtonSet/ButtonPages"
+import { useEffect, useState } from "react"
+import { useLocation } from "wouter"
 
 const category = {
   popular: "Populares",
@@ -12,11 +14,18 @@ const category = {
 }
 
 export default function Home({
-  params: { cat = "popular", page },
+  params: { cat = "popular" },
 }: {
-  params: { cat: KeyCategory; page: string }
+  params: { cat: KeyCategory }
 }) {
-  const currentPage: number = page ? parseInt(page) : 1
+  const [currentPage, setCurrentPage] = useState(1)
+  const [location] = useLocation()
+  const params = new URLSearchParams(window.location.search)
+  const page = params.get("page") ? parseInt(params.get("page")!) : 1
+  useEffect(() => {
+    setCurrentPage(page)
+  }, [page])
+  console.log(currentPage)
 
   const { loading, films } = useFilms({
     cat,

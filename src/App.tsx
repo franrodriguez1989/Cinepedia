@@ -14,7 +14,7 @@ function App() {
         <LogoApp />
         <TabContextProvider>
           <TopBar />
-          <Route component={Home} path="/home/:cat/:page?" />
+          <Route component={Home} path="/home/:cat/" />
           <Route component={Home} path="/" />
           <Route component={Details} path="/details/:id" />
           <Route component={SearchPage} path="/searchfilms/:keyword/:page?" />
