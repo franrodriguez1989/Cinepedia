@@ -1,32 +1,44 @@
 import useFilms from "../../Hook/useFilms"
 import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
-import { type KeyCategory } from "../../types"
 import ButtonPages from "../../components/ButtonSet/ButtonPages"
+import { useEffect, useState } from "react"
+import { KeyCategory } from "../../types"
 
 const category = {
   popular: "Populares",
-  upcoming: "Proximamente",
+  upcoming: "Próximamente",
   now_playing: "Cartelera",
   top_rated: "Mejor valoradas",
 }
 
 export default function Home({
-  params: { cat = "popular", page },
+  params: { cat },
 }: {
-  params: { cat: KeyCategory; page: string }
+  params: { cat: KeyCategory }
 }) {
-  const currentPage: number = page ? parseInt(page) : 1
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const location = window.location
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const pageUrl = params.get("page")
+    const page = pageUrl ? parseInt(pageUrl) : 1
+    setCurrentPage(page)
+  }, [location.search])
 
   const { loading, films } = useFilms({
     cat,
     currentPage,
   })
 
+  // Este console.log lo puedes usar para verificar si catCurrent se actualiza correctamente
+
   return (
     <>
       <div className="flex my-3 justify-center text-3xl mx-auto">
-        <h1 className=" text-black my-5 font-bold italic">
+        <h1 className="text-black my-5 font-bold italic">
           Películas {category[cat]}
         </h1>
       </div>
@@ -39,9 +51,9 @@ export default function Home({
           <ButtonPages currentPage={currentPage} keyword={cat} />
         </>
       ) : (
-        <div className="flex justify-center  my-4  text-center">
-          <h1 className=" w-fit font-bold text-center text-4xl  border-y-2 border-gray-400 p-3">
-            No hay mas peliculas
+        <div className="flex justify-center my-4 text-center">
+          <h1 className="w-fit font-bold text-center text-4xl border-y-2 border-gray-400 p-3">
+            No hay más películas
           </h1>
         </div>
       )}
