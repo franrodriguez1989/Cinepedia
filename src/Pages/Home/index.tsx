@@ -13,7 +13,7 @@ const category = {
 }
 
 export default function Home({
-  params: { cat },
+  params: { cat = "popular" },
 }: {
   params: { cat: KeyCategory }
 }) {
