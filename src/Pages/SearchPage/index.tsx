@@ -2,23 +2,16 @@ import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
 import useSearchFilms from "../../Hook/useSearchFilms"
 import ButtonPages from "../../components/ButtonSet/ButtonPages"
-import { useState, useEffect } from "react"
-import { useLocation, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import TopBar from "../../components/TopBar"
+import useCurrentPage from "../../Hook/useCurrentPage"
+import useFavFilms from "../../Hook/useFavFilms"
 
 export default function SearchPage() {
+  const { favFilms } = useFavFilms()
   const { keyword = "" } = useParams<{ keyword: string }>()
 
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const location = useLocation()
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search)
-    const pageUrl = params.get("page")
-    const page = pageUrl ? parseInt(pageUrl) : 1
-    setCurrentPage(page)
-  }, [location.search])
+  const currentPage = useCurrentPage()
   const { loading, films } = useSearchFilms(keyword, currentPage)
 
   return (
@@ -32,7 +25,7 @@ export default function SearchPage() {
         <Spinner />
       ) : films.length !== 0 ? (
         <>
-          <CoversGrid covers={films} />
+          <CoversGrid covers={films} favFilms={favFilms} />
           <ButtonPages currentPage={currentPage} keyword={keyword} />
         </>
       ) : (

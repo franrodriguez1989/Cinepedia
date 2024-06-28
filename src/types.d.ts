@@ -10,6 +10,13 @@ export type Covers = {
   poster_path: string
   id?: string
 }
+export type CoversFilms = {
+  original_title: string
+  poster_path: string
+  id?: string
+  favFilms?: Covers[]
+}
+
 type Genre = {
   id: number
   name: string
@@ -26,6 +33,7 @@ export interface ButtonSetProps {
     cat: string
   }
   homePage: boolean
+  favPage: boolean
 }
 export type ButtonPanelProps = {
   title: string
