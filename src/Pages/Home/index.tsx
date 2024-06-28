@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom"
 import TopBar from "../../components/TopBar"
 import useCurrentPage from "../../Hook/useCurrentPage"
 import useFavFilms from "../../Hook/useFavFilms"
+import { Link } from "react-router-dom"
 
 const category = {
   popular: "Populares",
@@ -50,11 +51,20 @@ export default function Home() {
           <ButtonPages currentPage={currentPage} keyword={cat} />
         </>
       ) : (
-        <div className="flex justify-center my-4 text-center">
-          <h1 className="w-fit font-bold text-center text-4xl border-y-2 border-gray-400 p-3">
-            No hay más películas
-          </h1>
-        </div>
+        <>
+          <div className="flex justify-center my-4 text-center">
+            <h1 className="w-fit font-bold text-center text-3xl sm:text-4xl border-y-2 border-gray-400 p-3">
+              No hay más películas
+            </h1>
+          </div>
+          <div className="flex justify-center">
+            <Link to={`?page=${currentPage - 1}`}>
+              <button className="font-semibold p-2 bg-gray-300 m-4 rounded hover:font-bold">
+                Volver
+              </button>
+            </Link>
+          </div>
+        </>
       )}
     </>
   )

@@ -40,7 +40,7 @@ export default function FavPage() {
                 </button>
               </Link>
             )}
-            {favFilms.length > 18 && (
+            {currentCover.length === 18 && (
               <Link to={`/favfilms?page=${currentPage + 1}`}>
                 <button className="font-semibold p-2 bg-gray-300 m-4 rounded hover:font-bold">
                   Siguiente
