@@ -8,7 +8,7 @@ import useCurrentPage from "../../Hook/useCurrentPage"
 import useFavFilms from "../../Hook/useFavFilms"
 
 export default function SearchPage() {
-  const { favFilms } = useFavFilms()
+  const { favFilms, setFavFilms } = useFavFilms()
   const { keyword = "" } = useParams<{ keyword: string }>()
 
   const currentPage = useCurrentPage()
@@ -25,7 +25,11 @@ export default function SearchPage() {
         <Spinner />
       ) : films.length !== 0 ? (
         <>
-          <CoversGrid covers={films} favFilms={favFilms} />
+          <CoversGrid
+            covers={films}
+            favFilms={favFilms}
+            setFavFilms={setFavFilms}
+          />
           <ButtonPages currentPage={currentPage} keyword={keyword} />
         </>
       ) : (
