@@ -15,7 +15,7 @@ export type CoversFilms = {
   poster_path: string
   id?: string
   favFilms?: Covers[]
-  setFavFilms: React.Dispatch<React.SetStateAction<Covers[]>>
+  setFavFilms?: React.Dispatch<React.SetStateAction<Covers[]>>
 }
 
 type Genre = {

@@ -15,10 +15,10 @@ export default function Cover({
     if (!isAlreadyFav) {
       const newFav = { original_title, poster_path, id }
       const updatedFavs = favFilms && [...favFilms, newFav]
-      updatedFavs && setFavFilms(updatedFavs)
+      updatedFavs && setFavFilms && setFavFilms(updatedFavs)
     } else {
       const updatedFavs = favFilms.filter((fav: Covers) => fav.id !== id)
-      updatedFavs && setFavFilms(updatedFavs)
+      updatedFavs && setFavFilms && setFavFilms(updatedFavs)
     }
   }
   const imageUrl = poster_path
