@@ -2,10 +2,11 @@ import useFilms from "../../Hook/useFilms"
 import Spinner from "../../components/Spinner"
 import CoversGrid from "../../components/CoversGrid"
 import ButtonPages from "../../components/ButtonSet/ButtonPages"
-import { useEffect, useState } from "react"
 import { KeyCategory } from "../../types"
-import { useLocation, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import TopBar from "../../components/TopBar"
+import useCurrentPage from "../../Hook/useCurrentPage"
+import useFavFilms from "../../Hook/useFavFilms"
 
 const category = {
   popular: "Populares",
@@ -15,17 +16,11 @@ const category = {
 }
 
 export default function Home() {
+  const { favFilms } = useFavFilms()
+
   const { cat = "popular" } = useParams<{ cat: KeyCategory }>()
 
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const location = useLocation()
-  useEffect(() => {
-    const params = new URLSearchParams(location.search)
-    const pageUrl = params.get("page")
-    const page = pageUrl ? parseInt(pageUrl) : 1
-    setCurrentPage(page)
-  }, [location.search])
+  const currentPage = useCurrentPage()
 
   const { loading, films } = useFilms({
     cat,
@@ -47,7 +42,7 @@ export default function Home() {
         <Spinner />
       ) : films.length > 0 ? (
         <>
-          <CoversGrid covers={films} />
+          <CoversGrid favFilms={favFilms} covers={films} />
           <ButtonPages currentPage={currentPage} keyword={cat} />
         </>
       ) : (

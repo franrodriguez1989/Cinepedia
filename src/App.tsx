@@ -5,6 +5,7 @@ import Home from "./Pages/Home"
 import Details from "./Pages/Details"
 
 import SearchPage from "./Pages/SearchPage"
+import FavPage from "./Pages/FavPage"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route element={<Home />} path="/" />
           <Route element={<Details />} path="/details/:id" />
           <Route element={<SearchPage />} path="/searchfilms/:keyword" />
+          <Route element={<FavPage />} path="/favfilms" />
         </Routes>
       </div>
     </>

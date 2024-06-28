@@ -11,7 +11,7 @@ export default function TopBar() {
     setShowPanel((prev) => !prev)
   }
   const homePage = useLocation().pathname === "/"
-
+  const favPage = useLocation().pathname === "/favfilms"
   const params = useParams()
   const safeParams = { cat: params.cat || "" }
 
@@ -25,13 +25,21 @@ export default function TopBar() {
           >
             <ButtonDropDownMenu />
           </button>
-          <ButtonSet params={safeParams} homePage={homePage} />
+          <ButtonSet
+            params={safeParams}
+            homePage={homePage}
+            favPage={favPage}
+          />
         </div>
         <SearchForm />
       </div>
 
       {showPanel && (
-        <ButtonSetSmartphone params={safeParams} homePage={homePage} />
+        <ButtonSetSmartphone
+          params={safeParams}
+          homePage={homePage}
+          favPage={favPage}
+        />
       )}
     </header>
   )

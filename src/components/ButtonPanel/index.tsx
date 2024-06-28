@@ -9,7 +9,7 @@ export default function ButtonPanel({
   return (
     <Link
       className={`hover:text-black rounded mx-2 p-2 ${className}`}
-      to={`/home/${name}`}
+      to={`/${name}`}
     >
       {title}
     </Link>
