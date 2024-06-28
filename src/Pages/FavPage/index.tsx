@@ -7,14 +7,12 @@ import { Link } from "react-router-dom"
 
 export default function FavPage() {
   const currentPage = useCurrentPage()
-  const { favFilms, loading } = useFavFilms()
+  const { favFilms, loading, setFavFilms } = useFavFilms()
 
   const coverForPage = 18
   const initialCover = coverForPage * (currentPage - 1)
   const finalCover = initialCover + coverForPage
   const currentCover = favFilms.slice(initialCover, finalCover)
-
-  // Este console.log lo puedes usar para verificar si catCurrent se actualiza correctamente
 
   return (
     <>
@@ -29,7 +27,11 @@ export default function FavPage() {
         <Spinner />
       ) : currentCover.length > 0 ? (
         <>
-          <CoversGrid covers={currentCover} favFilms={favFilms} />
+          <CoversGrid
+            covers={currentCover}
+            favFilms={favFilms}
+            setFavFilms={setFavFilms}
+          />
           <div className=" flex w-full justify-center">
             {currentPage > 1 && (
               <Link to={`/favfilms?page=${currentPage - 1}`}>
@@ -38,11 +40,13 @@ export default function FavPage() {
                 </button>
               </Link>
             )}
-            <Link to={`/favfilms?page=${currentPage + 1}`}>
-              <button className="font-semibold p-2 bg-gray-300 m-4 rounded hover:font-bold">
-                Siguiente
-              </button>
-            </Link>
+            {favFilms.length > 18 && (
+              <Link to={`/favfilms?page=${currentPage + 1}`}>
+                <button className="font-semibold p-2 bg-gray-300 m-4 rounded hover:font-bold">
+                  Siguiente
+                </button>
+              </Link>
+            )}
           </div>
         </>
       ) : (

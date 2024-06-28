@@ -16,7 +16,7 @@ const category = {
 }
 
 export default function Home() {
-  const { favFilms } = useFavFilms()
+  const { favFilms, setFavFilms } = useFavFilms()
 
   const { cat = "popular" } = useParams<{ cat: KeyCategory }>()
 
@@ -42,7 +42,11 @@ export default function Home() {
         <Spinner />
       ) : films.length > 0 ? (
         <>
-          <CoversGrid favFilms={favFilms} covers={films} />
+          <CoversGrid
+            favFilms={favFilms}
+            setFavFilms={setFavFilms}
+            covers={films}
+          />
           <ButtonPages currentPage={currentPage} keyword={cat} />
         </>
       ) : (

@@ -7,6 +7,7 @@ export default function Cover({
   poster_path,
   id,
   favFilms,
+  setFavFilms,
 }: CoversFilms) {
   const isAlreadyFav = favFilms && favFilms.some((fav: Covers) => fav.id === id)
 
@@ -14,10 +15,10 @@ export default function Cover({
     if (!isAlreadyFav) {
       const newFav = { original_title, poster_path, id }
       const updatedFavs = favFilms && [...favFilms, newFav]
-      localStorage.setItem("Covers", JSON.stringify(updatedFavs))
+      updatedFavs && setFavFilms(updatedFavs)
     } else {
       const updatedFavs = favFilms.filter((fav: Covers) => fav.id !== id)
-      localStorage.setItem("Covers", JSON.stringify(updatedFavs))
+      updatedFavs && setFavFilms(updatedFavs)
     }
   }
   const imageUrl = poster_path
