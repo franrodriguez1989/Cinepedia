@@ -2,16 +2,21 @@ import { useEffect, useState } from "react"
 import type { Covers } from "../types"
 
 export default function useFavFilms() {
-  const [favFilms, setFavFilms] = useState<Covers[]>()
+  const initial: Covers[] = JSON.parse(localStorage.getItem("Covers") || "[]")
+  const [favFilms, setFavFilms] = useState<Covers[]>(initial)
   const [loading, setLoading] = useState(false)
-  const existingFavs: Covers[] = JSON.parse(
-    localStorage.getItem("Covers") || "[]"
-  )
+
   useEffect(() => {
     setLoading(true)
+    const existingFavs: Covers[] = JSON.parse(
+      localStorage.getItem("Covers") || "[]"
+    )
     setFavFilms(existingFavs)
     setLoading(false)
-  }, [existingFavs])
+  }, [])
+  useEffect(() => {
+    localStorage.setItem("Covers", JSON.stringify(favFilms))
+  }, [favFilms])
 
-  return { favFilms: favFilms ?? [], loading }
+  return { favFilms, loading, setFavFilms }
 }
