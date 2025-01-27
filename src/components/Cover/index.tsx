@@ -14,7 +14,7 @@ export default function Cover({
   const clickFav = ({ original_title, poster_path, id }: Covers) => {
     if (!isAlreadyFav) {
       const newFav = { original_title, poster_path, id }
-      const updatedFavs = favFilms && [...favFilms, newFav]
+      const updatedFavs = favFilms && [newFav, ...favFilms]
       updatedFavs && setFavFilms && setFavFilms(updatedFavs)
     } else {
       const updatedFavs = favFilms.filter((fav: Covers) => fav.id !== id)

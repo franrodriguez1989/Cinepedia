@@ -28,8 +28,6 @@ export default function Home() {
     currentPage,
   })
 
-  // Este console.log lo puedes usar para verificar si catCurrent se actualiza correctamente
-
   return (
     <>
       <TopBar />
